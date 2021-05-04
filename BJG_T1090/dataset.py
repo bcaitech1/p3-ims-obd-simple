@@ -61,10 +61,16 @@ def get_classname(classID, cats):
 
 class CustomDataLoader(Dataset):
     """COCO format"""
-    def __init__(self, data_dir, mode = 'train', transform = None):
+    def __init__(self, data_dir, mode = 'train', transform = None, tta = False):
         super().__init__()
         self.mode = mode
-        self.transform = transform
+        self.tta = tta
+        if not self.tta:
+            self.transform = transform
+        else:
+            self.transform_1 = transform[0]
+            self.transform_2 = transform[1]
+            self.transform_3 = transform[2]
         self.coco = COCO(data_dir)
         
     def __getitem__(self, index: int):
@@ -75,7 +81,7 @@ class CustomDataLoader(Dataset):
         # cv2 를 활용하여 image 불러오기
         images = cv2.imread(os.path.join(dataset_path, image_infos['file_name']))
         images = cv2.cvtColor(images, cv2.COLOR_BGR2RGB).astype(np.float32)
-        images /= 255.0
+#         images /= 255.0
         
         if (self.mode in ('train', 'val')):
             ann_ids = self.coco.getAnnIds(imgIds=image_infos['id'])
@@ -106,7 +112,17 @@ class CustomDataLoader(Dataset):
         
         if self.mode == 'test':
             # transform -> albumentations 라이브러리 활용
-            if self.transform is not None:
+            if self.tta:
+                transformed_1 = self.transform_1(image=images)
+                transformed_2 = self.transform_2(image=images)
+                transformed_3 = self.transform_3(image=images)
+                images_1 = transformed_1["image"]
+                images_2 = transformed_2["image"]
+                images_3 = transformed_3["image"]
+                
+                return images_1, images_2, images_3, image_infos
+                
+            elif self.transform is not None:
                 transformed = self.transform(image=images)
                 images = transformed["image"]
             
