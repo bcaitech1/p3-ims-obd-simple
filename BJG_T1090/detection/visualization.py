@@ -94,11 +94,12 @@ def push_image(cfg, checkpoint_path, wandb_name=None, img_num=10, mode="test", w
     """Wandb Runs의 media에 image를 전송
 
     Args:
+        cfg (str): 사용할 모델에 관련된 config.
+        checkpoint_path (str): checkpoint가 저장된 경로.
         wandb_name (str): Runs에 표시되는 이름.
-        config_path (str): 사용할 모델에 관련된 config 파일이 저장된 경로
-        checkpoint_path (str): checkpoint가 저장된 경로
         img_num (int, optional): 시각화할 이미지의 개수. Defaults to 10.
-        mode (str, optional): 시각화할 데이터 셋 종류. [train/val/test] Defaults to "test".
+        mode (str, optional): 시각화할 데이터 셋 선택 [train/val/test]. Defaults to "test".
+        wandb_finish (boolean, optional): 시각화 후 wandb run 종료 여부. Defaults to "True
     """
     cfg.data.samples_per_gpu = 4  # batch_size
     data, output = get_data_and_output(cfg, checkpoint_path, mode)
