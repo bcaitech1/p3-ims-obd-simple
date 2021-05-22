@@ -1,20 +1,6 @@
 # [P Stage 3] Semantic segmentation & Object detection
 
-## 데이터
-- 전체 이미지 개수 : 4109장
-  - train: 2616장
-  - validation: 655장
-  - test(public): 417장
-  - test(private): 420장
-- 11 class : UNKNOWN, General trash, Paper, Paper pack, Metal, Glass, Plastic, Styrofoam, Plastic bag, Battery, Clothing
-- 이미지 크기 : (512, 512)
-
-### 데이터에서 발견된 문제와 문제 해결을 위해 시도한 내용
-- Data Imbalance
-  <br/><img src = "https://user-images.githubusercontent.com/71882533/119221019-3cea3500-bb28-11eb-8af3-bd91b9d8bb89.png" width="400px" height="350px">
-  <br/>-> Mosaic 기법을 통해 상대적으로 수가 적은 class의 object가 있는 사진을 모델에 더 많이 제공
-
-## Semantic segmentation
+## Semantic segmenation
 ![image](https://user-images.githubusercontent.com/71882533/119220651-7457e200-bb26-11eb-921e-a116cb95a59d.png)
 
 ### 개요
@@ -40,6 +26,20 @@
 - Cascade Mask R-CNN (`Swin`)
 - VfNet (`Resnet 101`)
 - UniverseNet (`Res2net 101`)
+
+## 데이터
+- 전체 이미지 개수 : 4109장
+  - train: 2616장
+  - validation: 655장
+  - test(public): 417장
+  - test(private): 420장
+- 11 class : UNKNOWN, General trash, Paper, Paper pack, Metal, Glass, Plastic, Styrofoam, Plastic bag, Battery, Clothing
+- 이미지 크기 : (512, 512)
+
+### 데이터에서 발견된 문제와 문제 해결을 위해 시도한 내용
+- Data Imbalance
+  <br/><img src = "https://user-images.githubusercontent.com/71882533/119221019-3cea3500-bb28-11eb-8af3-bd91b9d8bb89.png" width="400px" height="350px">
+  <br/>-> Mosaic 기법을 통해 상대적으로 수가 적은 class의 object가 있는 사진을 모델에 더 많이 제공
 
 ### 성능 향상을 위해 시도한 내용
 - Pseudo Labeling
