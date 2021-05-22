@@ -39,15 +39,16 @@
 ### 데이터에서 발견된 문제와 문제 해결을 위해 시도한 내용
 - Data Imbalance 문제
   <br/><img src = "https://user-images.githubusercontent.com/71882533/119221019-3cea3500-bb28-11eb-8af3-bd91b9d8bb89.png" width="400px" height="350px">
-  - Mosaic 기법 사용
-    Mosaic 기법을 통해 상대적으로 수가 적은 class의 object가 있는 사진 3장을 기존의 이미지에 추가하여 모델에 더 많이 제공
+  - Mosaic 기법 사용 `실패`
+    Mosaic 기법을 통해 상대적으로 수가 적은 class(UNKNOWN, Clothing, Battery)의 object가 있는 사진 3장을 기존의 이미지에 추가하여 모델에 더 많이 제공
     <br/><img src = "https://user-images.githubusercontent.com/71882533/119221439-6310d480-bb2a-11eb-9f3f-29e6db81e80d.png" width="400px" height="350px">
-  - 성능 좋은 모델 사용
+  - 성능 좋은 모델 사용 `성공`
     현재 Segmentation, Object detection에서 SOTA인 Swin 모델 사용
 
 ### 성능 향상을 위해 시도한 내용
-- Pseudo Labeling
-- WBF를 통한 모델 ensemble
+- Pseudo Labeling `성공`
+- WBF를 통한 모델 ensemble `성공`
+- Mixup `실패`
 
 ## Link
 - [실험 과정 공유](https://www.notion.so/3365343dd8474b259141ce730e1afe0f?v=cb0e96e64fda4c4a9d8d97914b8234bf)
