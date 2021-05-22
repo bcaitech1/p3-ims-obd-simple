@@ -3,7 +3,7 @@
 - `print_image.py`: COCO dataset에서 이미지를 시각화 하는데 사용되는 함수들을 저장한 파일
 - `visualization.py`: wandb에 모델의 학습결과를 시각화할 수 있도록 wandb에 이미지를 logging하는 함수가 구현된 파일
 ### augmentation
-  - `\_init_.py`: mmedetection pipeline 생성시 사용되는 초기화 파일, mypipeline.py의 Mosaic class와 Mixup class를 추가
+  - `_init_.py`: mmedetection pipeline 생성시 사용되는 초기화 파일, mypipeline.py의 Mosaic class와 Mixup class를 추가
   - `mypipeline.py`: mmdetection train pipeline에 mosaic, mixup 기법을 추가하여 사용할 수 있도록 구현한 파일
 
 
