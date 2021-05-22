@@ -36,7 +36,7 @@
 - 11 class : UNKNOWN, General trash, Paper, Paper pack, Metal, Glass, Plastic, Styrofoam, Plastic bag, Battery, Clothing
 - 이미지 크기 : (512, 512)
 
-### 데이터에서 발견된 문제와 문제 해결을 위해 시도한 내용
+##### 데이터에서 발견된 문제와 문제 해결을 위해 시도한 내용
 - Data Imbalance 문제
   <br/><img src = "https://user-images.githubusercontent.com/71882533/119221019-3cea3500-bb28-11eb-8af3-bd91b9d8bb89.png" width="400px" height="350px">
   - Mosaic 기법 사용 `실패`
@@ -45,7 +45,7 @@
   - 성능 좋은 모델 사용 `성공`
     <br/>현재 Segmentation, Object detection에서 SOTA인 Swin 모델 사용
 
-### 성능 향상을 위해 시도한 내용
+## 성능 향상을 위해 시도한 내용
 - Pseudo Labeling `성공`
   <br/> LB에서 높은 점수를 낸 Cascade Mask R-CNN(`Swin`) 모델을 통해 나온 결과에서 class 별로 score threshold를 다르게 주어, 해당 threshold 이상인 score의 bbox에 대해서만 다시 학습에 사용
 - WBF를 통한 모델 ensemble `성공`
