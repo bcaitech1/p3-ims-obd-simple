@@ -11,7 +11,7 @@
 
 ### 데이터에서 발견된 문제와 문제 해결을 위해 시도한 내용
 - Data Imbalance
-  <br/><img src = "https://user-images.githubusercontent.com/71882533/119221019-3cea3500-bb28-11eb-8af3-bd91b9d8bb89.png" width="300px" height="300px">
+  <br/><img src = "https://user-images.githubusercontent.com/71882533/119221019-3cea3500-bb28-11eb-8af3-bd91b9d8bb89.png" width="400px" height="350px">
   <br/>-> Mosaic 기법을 통해 상대적으로 수가 적은 class의 object가 있는 사진을 모델에 더 많이 제공
 
 ## Semantic segmentation
@@ -35,11 +35,11 @@
 - 문제 해결을 위한 데이터셋으로는 일반 쓰레기, 플라스틱, 종이, 유리 등 11 종류의 쓰레기가 찍힌 사진 데이터셋이 제공
 
 ### 사용한 모델
-- Faster R-CNN
-- Mask R-CNN
-- Cascade Mask R-CNN
-- VfNet
-- UniverseNet
+- Faster R-CNN (`Resnet 50`)
+- Mask R-CNN (`Swin`)
+- Cascade Mask R-CNN (`Swin`)
+- VfNet (`Resnet 101`)
+- UniverseNet (`Res2net 101`)
 
 ### 성능 향상을 위해 시도한 내용
 - Pseudo Labeling
