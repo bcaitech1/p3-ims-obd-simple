@@ -46,5 +46,5 @@
 - WBF를 통한 모델 ensemble
 
 ## Link
-[실험 과정 공유](https://www.notion.so/3365343dd8474b259141ce730e1afe0f?v=cb0e96e64fda4c4a9d8d97914b8234bf)
-[실험 결과 공유](https://docs.google.com/spreadsheets/d/12upH-lAlvF2PtLd0D70Nqz_DThTubp86_443BF-xmZE/edit?usp=sharing)
+- 실험 과정 공유: [Google docs](https://www.notion.so/3365343dd8474b259141ce730e1afe0f?v=cb0e96e64fda4c4a9d8d97914b8234bf)
+- 실험 결과 공유: [Notion](https://docs.google.com/spreadsheets/d/12upH-lAlvF2PtLd0D70Nqz_DThTubp86_443BF-xmZE/edit?usp=sharing)
