@@ -15,7 +15,7 @@
   -> Mosaic 기법을 통해 상대적으로 수가 적은 class의 object가 있는 사진을 모델에 더 많이 제공
 
 ## Semantic segmentation
-![image](https://user-images.githubusercontent.com/71882533/119220651-7457e200-bb26-11eb-921e-a116cb95a59d.png)
+![image](https://user-images.githubusercontent.com/71882533/119220651-7457e200-bb26-11eb-921e-a116cb95a59d.png){: width="70%" height="70%"}
 
 ### 개요
 - 2021.04.26(월) ~ 05.06(목) 19:00
