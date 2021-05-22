@@ -43,7 +43,7 @@
     <br/>Mosaic 기법을 통해 상대적으로 수가 적은 class(UNKNOWN, Clothing, Battery)의 object가 있는 사진 3장을 기존의 이미지에 추가하여 모델에 더 많이 제공
     <br/><img src = "https://user-images.githubusercontent.com/71882533/119221439-6310d480-bb2a-11eb-9f3f-29e6db81e80d.png" width="400px" height="350px">
   - 성능 좋은 모델 사용 `성공`
-    현재 Segmentation, Object detection에서 SOTA인 Swin 모델 사용
+    <br/>현재 Segmentation, Object detection에서 SOTA인 Swin 모델 사용
 
 ### 성능 향상을 위해 시도한 내용
 - Pseudo Labeling `성공`
