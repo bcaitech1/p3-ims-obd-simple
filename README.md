@@ -21,11 +21,11 @@
 - 문제 해결을 위한 데이터셋으로는 일반 쓰레기, 플라스틱, 종이, 유리 등 11 종류의 쓰레기가 찍힌 사진 데이터셋이 제공
 
 ### 사용한 모델
-- Faster R-CNN (`Resnet 50`)
-- Mask R-CNN (`Swin`)
-- Cascade Mask R-CNN (`Swin`)
-- VfNet (`Resnet 101`)
-- UniverseNet (`Res2net 101`)
+- Faster R-CNN `Resnet 50`
+- Mask R-CNN `Swin`
+- Cascade Mask R-CNN `Swin`
+- VfNet `Resnet 101`
+- UniverseNet `Res2net 101`
 
 ## 데이터
 - 전체 이미지 개수 : 4109장
