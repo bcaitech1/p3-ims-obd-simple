@@ -11,7 +11,7 @@
 
 ### 데이터에서 발견된 문제와 문제 해결을 위해 시도한 내용
 - Data Imbalance
-  ![image](https://user-images.githubusercontent.com/71882533/119221019-3cea3500-bb28-11eb-8af3-bd91b9d8bb89.png){: width="70%" height="70%"}
+  ![image](https://user-images.githubusercontent.com/71882533/119221019-3cea3500-bb28-11eb-8af3-bd91b9d8bb89.png){: width="30" height="30"}
   -> Mosaic 기법을 통해 상대적으로 수가 적은 class의 object가 있는 사진을 모델에 더 많이 제공
 
 ## Semantic segmentation
