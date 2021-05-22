@@ -22,16 +22,25 @@ dataset_dir = '/opt/ml/input/data'
 
 
 def get_data_and_output(cfg, checkpoint_path, mode):
-    PREFIX = '../../input/data/'    
+    """사용한 data와 해당 data에 대한 모델의 추론 결과 반환
 
+    Args:
+        cfg (Config): 학습에 사용한 config 파일
+        checkpoint_path (str): 학습에 사용한 모델의 checkpoint가 저장된 경로
+        mode (str): 사용할 dataset의 종류. validation dataset('val'), test dataset('test') 중 하나
+
+    Raises:
+        ValueError: mode 값으로 'val', 'test'가 아닌 문자열이 들어올 경우 error 발생
+
+    Returns:
+        data, output: 사용한 data, 해당 data에 대한 모델의 추론 결과
+    """    
     if mode == "test":
         data = cfg.data.test
-    elif mode == "train":
-        data = cfg.data.train
     elif mode == "val":
         data = cfg.data.val
     else:
-        raise ValueError('mode can have train, val or test')
+        raise ValueError('mode can have val or test')
 
     dataset = build_dataset(data)
     data_loader = build_dataloader(
@@ -52,6 +61,7 @@ def get_data_and_output(cfg, checkpoint_path, mode):
     return data, output
 
 
+# https://wandb.ai/stacey/yolo-drive/reports/Bounding-Boxes-for-Object-Detection--Vmlldzo4Nzg4MQ
 def bounding_boxes(filename, boxes, labels, scores=None, mode="ground_truth"):
     # load raw input photo
     raw_image = cv2.imread(filename, cv2.IMREAD_COLOR)
@@ -82,7 +92,19 @@ def bounding_boxes(filename, boxes, labels, scores=None, mode="ground_truth"):
 
 
 def get_image(filename, p_boxes, p_labels, p_scores, g_boxes, g_labels):
-    # load raw input photo
+    """Wandb에서 사용가능한 이미지로 변경
+
+    Args:
+        filename (str): 추론에 사용된 이미지 파일 이름
+        p_boxes (list): 추론된 bbox 리스트
+        p_labels (list): 추론된 label 리스트
+        p_scores (list): 추론된 cateogry score 리스트
+        g_boxes (ndarray): 정답 bbox 리스트
+        g_labels (list): 정답 label 리스트
+
+    Returns:
+        Image, Image, Image: 원본 이미지, 예측된 bbox가 그려진 이미지, 정답 bbox가 그려진 이미지
+    """    
     img = cv2.imread(filename, cv2.IMREAD_COLOR)
         
     raw_img = wandb.Image(img)
@@ -91,18 +113,19 @@ def get_image(filename, p_boxes, p_labels, p_scores, g_boxes, g_labels):
     
     return (raw_img, p_box_img, g_box_img)
 
+
 def push_image(cfg, checkpoint_path, wandb_name=None, img_num=10, wandb_finish=True):
-    """Wandb Runs의 media에 image를 전송
-    
+    """모델의 validation, test data에 대한 추론 결과 image를 Wandb Runs의 media에 전송
+
     Args:
-        cfg (str): 사용할 모델에 관련된 config.
-        checkpoint_path (str): checkpoint가 저장된 경로.
+        cfg (Config): 학습에 사용한 config 파일
+        checkpoint_path (str): 학습에 사용한 모델의 checkpoint가 저장된 경로
         wandb_name (str): Runs에 표시되는 이름.
         img_num (int, optional): 시각화할 이미지의 개수. Defaults to 10.
-        wandb_finish (boolean, optional): 시각화 후 wandb run 종료 여부. Defaults to "True
     """
-    cfg.data.samples_per_gpu = 4  # batch_size
-    init_kwargs = cfg.log_config.hooks[1].init_kwargs
+
+    cfg.data.samples_per_gpu = 4
+    init_kwargs = cfg.log_config.hooks[1].init_kwargs  # 설정한 wandb 정보 가져오기
     run = wandb.init(
         project=init_kwargs['project'],
         entity=init_kwargs['entity'],
@@ -114,7 +137,7 @@ def push_image(cfg, checkpoint_path, wandb_name=None, img_num=10, wandb_finish=T
         data, output = get_data_and_output(cfg, checkpoint_path, mode)
     
         coco = COCO(data.ann_file)
-        # Image visualization
+        # 모델의 추론 결과 bbox 정보 추출 후 Wandb에서 사용가능한 이미지로 변경
         imgs = []
         for i, out in enumerate(output):
             p_labels, p_scores, p_bboxes = [], [], []
@@ -138,10 +161,11 @@ def push_image(cfg, checkpoint_path, wandb_name=None, img_num=10, wandb_finish=T
 
             if i>=img_num:
                 break
+
         wandb.log({f"object detection {mode}": imgs})
         
-        
-    # Scatter plot
+
+    # 이미지 당 모델이 예측한 Category 분포, object의 max area 조사
     categories, max_areas = [], []
     for i, out in enumerate(output):  # test의 output
         p_labels = []
@@ -158,7 +182,7 @@ def push_image(cfg, checkpoint_path, wandb_name=None, img_num=10, wandb_finish=T
         categories.append(p_labels)
         max_areas.append(max_area)
     
-    # Category
+    # 이미지 당 모델이 예측한 Category 분포 시각화
     fig = plt.figure(figsize=(25, 16))
     ax = fig.add_subplot(111)
 
@@ -170,11 +194,11 @@ def push_image(cfg, checkpoint_path, wandb_name=None, img_num=10, wandb_finish=T
         ax.scatter(x=[i]*len(tmp_categories), y=tmp_categories, color='royalblue', alpha=0.6)
 
     for s in ['top', 'bottom', 'left', 'right']:
-        ax.spines[s].set_visible(False)     # 테두리 제거
+        ax.spines[s].set_visible(False)
     categories_name = './categories.png'
     plt.savefig(categories_name, dpi=300)
 
-    # Max area
+    # 이미지 당 모델이 예측한 object의 max area 시각화
     fig = plt.figure(figsize=(20, 18))
     plt.title("Predicted max area", fontsize=30)
     plt.xlabel('image id', fontsize=20)
@@ -195,4 +219,3 @@ def push_image(cfg, checkpoint_path, wandb_name=None, img_num=10, wandb_finish=T
     if wandb_finish:
         run.finish()
     print('Done.')
-
