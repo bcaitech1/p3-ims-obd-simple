@@ -47,7 +47,9 @@
 
 ### 성능 향상을 위해 시도한 내용
 - Pseudo Labeling `성공`
+  <br/> LB에서 높은 점수를 낸 Cascade Mask R-CNN(`Swin`) 모델을 통해 나온 결과에서 class 별로 score threshold를 다르게 주어, 해당 threshold 이상인 score의 bbox에 대해서만 다시 학습에 사용
 - WBF를 통한 모델 ensemble `성공`
+  <br/> LB score가 높은 모델들에 대해 서로 다른 구조를 가진 모델들을 모아 WBF를 사용하여 box ensemble
 - Mixup `실패`
 
 ## Link
