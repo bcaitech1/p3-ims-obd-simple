@@ -3,24 +3,24 @@
 ## Semantic segmenation
 ![image](https://user-images.githubusercontent.com/71882533/119220651-7457e200-bb26-11eb-921e-a116cb95a59d.png)
 
-### 개요
+##### 개요
 - 2021.04.26(월) ~ 05.06(목) 19:00
 - 쓰레기가 찍힌 사진에서 쓰레기를 object별로 Segmentation 하는 모델 생성
 - 문제 해결을 위한 데이터셋으로는 일반 쓰레기, 플라스틱, 종이, 유리 등 11 종류의 쓰레기가 찍힌 사진 데이터셋이 제공
 
-### 사용한 모델
+##### 사용한 모델
 - Unet
 - DeepLab v3 Plus
 
 ## Object detection
 ![image](https://user-images.githubusercontent.com/71882533/119220784-21caf580-bb27-11eb-8e09-2404073f3066.png)
 
-### 개요
+##### 개요
 - 2021.05.10(월) ~ 05.20(목) 19:00
 - 쓰레기가 찍힌 사진에서 쓰레기를 object별로 Detection 하는 모델 생성
 - 문제 해결을 위한 데이터셋으로는 일반 쓰레기, 플라스틱, 종이, 유리 등 11 종류의 쓰레기가 찍힌 사진 데이터셋이 제공
 
-### 사용한 모델
+##### 사용한 모델
 - Faster R-CNN `Resnet 50`
 - Mask R-CNN `Swin`
 - Cascade Mask R-CNN `Swin`
