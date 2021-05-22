@@ -40,6 +40,8 @@
 - Data Imbalance
   <br/><img src = "https://user-images.githubusercontent.com/71882533/119221019-3cea3500-bb28-11eb-8af3-bd91b9d8bb89.png" width="400px" height="350px">
   <br/>-> Mosaic 기법을 통해 상대적으로 수가 적은 class의 object가 있는 사진을 모델에 더 많이 제공
+  <br/><img src = "https://user-images.githubusercontent.com/71882533/119221439-6310d480-bb2a-11eb-9f3f-29e6db81e80d.png" width="400px" height="350px">
+  <br/>-> 성능 좋은 모델 사용 (Swin)
 
 ### 성능 향상을 위해 시도한 내용
 - Pseudo Labeling
